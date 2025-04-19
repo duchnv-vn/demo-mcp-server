@@ -6,13 +6,13 @@ ROOT_DIR=$(pwd)
 source $ROOT_DIR/script/load-env.sh
 
 if [ $NODE_ENV == 'local' ]; then
-    nest buid
+    nest build
 fi
 
 if [ $NODE_ENV == 'dev' ]; then
-    nest buid
+    nest build
 fi
 
 if [ $NODE_ENV == 'prod' ]; then
-    nest buid
+    nest build
 fi
