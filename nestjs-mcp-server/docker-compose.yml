@@ -20,8 +20,8 @@ services:
   backend:
     container_name: backend
     build:
-      context: docker
-      dockerfile: ./dev/Dockerfile
+      context: .
+      dockerfile: ./docker/dev/Dockerfile
     ports:
       - '3006:3006'
     restart: unless-stopped

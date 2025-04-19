@@ -20,8 +20,8 @@ services:
   backend:
     container_name: backend
     build:
-      context: docker
-      dockerfile: ./prod/Dockerfile
+      context: .
+      dockerfile: ./docker/prod/Dockerfile
     ports:
       - '3000:3000'
     restart: unless-stopped
