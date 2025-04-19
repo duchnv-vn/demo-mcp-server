@@ -26,7 +26,7 @@ RUN yarn run prisma generate
 ENV NODE_ENV=dev
 
 # Build the application for production
-RUN yarn run build:prod
+RUN yarn run build:dev
 
 # Copy entrypoint script
 COPY ./docker/dev/entrypoint.sh /entrypoint.sh
