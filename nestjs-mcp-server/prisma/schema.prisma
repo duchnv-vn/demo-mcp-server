@@ -1,0 +1,40 @@
+generator client {
+  provider      = "prisma-client-js"
+  binaryTargets = ["native", "linux-musl-openssl-3.0.x"]
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Category {
+  Frontend
+  Backend
+  Deployment
+  Document
+  Wireframe
+}
+
+model Project {
+  id        String   @id @default(uuid())
+  name      String   @unique
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(0)
+  updatedAt DateTime @updatedAt @map("updated_at") @db.Timestamptz(0)
+
+  Task Task[]
+}
+
+model Task {
+  id          String   @id @default(uuid())
+  name        String
+  category    Category
+  description String
+  projectId   String   @map("project_id")
+  startDate   DateTime @map("start_date") @db.Timestamptz(0)
+  dueDate     DateTime @map("due_date") @db.Timestamptz(0)
+  createdAt   DateTime @default(now()) @map("created_at") @db.Timestamptz(0)
+  updatedAt   DateTime @updatedAt @map("updated_at") @db.Timestamptz(0)
+
+  project Project @relation(references: [id], fields: [projectId])
+}
