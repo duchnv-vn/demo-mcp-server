@@ -12,21 +12,21 @@ WORKDIR /app
 COPY package*.json ./
 
 # Install only production dependencies
-RUN npm cache clean --force
-RUN npm ci --legacy-peer-deps
-RUN npm i -D @swc/core @swc/cli --legacy-peer-deps
+RUN yarn cache clean
+RUN yarn install --immutable
+RUN yarn add @swc/core @swc/cli -D
 
 # Copy the whole app
 COPY . .
 
 # Generate Prisma client
-RUN npx prisma generate
+RUN yarn run prisma generate
 
 # Set node env
 ENV NODE_ENV=dev
 
 # Build the application for production
-RUN npm run build:prod
+RUN yarn run build:prod
 
 # Copy entrypoint script
 COPY ./docker/dev/entrypoint.sh /entrypoint.sh
