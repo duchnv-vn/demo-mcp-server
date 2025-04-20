@@ -6,9 +6,6 @@ ROOT_DIR=$(pwd)
 echo "Loading environment variables from .env.prod..."
 [ -f /app/script/load-env.sh ] && source /app/script/load-env.sh
 
-# Explicitly set DATABASE_URL
-export DATABASE_URL="postgresql://${DATABASE_USER}:${DATABASE_PASSWORD}@${DATABASE_HOST}:${DATABASE_PORT}/${DATABASE_NAME}?schema=${DATABASE_SCHEMA}"
-
 # Initialize database schema
 echo "Initializing database schema..."
 if yarn run prisma:mig:prod; then
