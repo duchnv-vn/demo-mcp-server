@@ -16,7 +16,6 @@ export class DatabaseAccessToolController {
     try {
       this.transport = new SSEServerTransport('/messages', res);
       this.databaseAccessToolService.mcpServerService.connect(this.transport);
-      return res.send({ success: true });
     } catch (error) {
       console.error(error);
       return res.send({ success: false });
@@ -27,7 +26,6 @@ export class DatabaseAccessToolController {
   handleMessage(@Req() req: Request, @Res() res: Response) {
     try {
       if (this.transport) this.transport.handlePostMessage(req, res);
-      return res.send({ success: true });
     } catch (error) {
       console.error(error);
       return res.send({ success: false });
