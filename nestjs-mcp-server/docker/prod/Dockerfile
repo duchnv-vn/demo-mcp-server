@@ -9,7 +9,8 @@ RUN apk add --no-cache yarn
 WORKDIR /app
 
 # Copy package.json and package-lock.json
-COPY package*.json ./
+COPY package.json ./
+COPY yarn.lock ./
 
 # Install only production dependencies
 RUN yarn cache clean
@@ -17,8 +18,10 @@ RUN yarn install --immutable
 RUN yarn add @swc/core @swc/cli -D
 
 # Copy the whole app
-COPY . .
-COPY ./.env.prod .
+COPY .env.prod ./
+COPY script ./
+COPY src ./
+COPY prisma ./
 RUN chmod +x script/load-env.sh
 RUN chmod +x script/start.sh
 RUN chmod +x script/prisma-generate.sh
