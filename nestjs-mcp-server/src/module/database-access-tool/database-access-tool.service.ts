@@ -1,5 +1,4 @@
 import { Injectable, OnModuleInit } from '@nestjs/common';
-import { RegisteredTool } from '@modelcontextprotocol/sdk/server/mcp';
 import { Project } from '@prisma/client';
 import { z } from 'zod';
 import { McpServerService } from '@service/mcp-server/mcp-server.service';
@@ -20,14 +19,16 @@ export class DatabaseAccessToolService implements OnModuleInit {
     this.initGetProjectsTool();
   }
 
-  initGetProjectsTool(): RegisteredTool {
-    return this.mcpServerService.tool(
+  initGetProjectsTool() {
+    this.mcpServerService.tool(
       'get-projects',
       'Retrieve multiple projects with filters',
       {
         name: z.string().optional(),
       },
       async ({ name }) => {
+        console.log('initGetProjectsTool', name);
+
         let isError = false;
 
         let projects = [] as Project[];
