@@ -7,10 +7,14 @@ import { PrismaService } from '@service/prisma/prisma.service';
 
 @Injectable()
 export class DatabaseAccessToolService implements OnModuleInit {
-  constructor(
-    private readonly prisma: PrismaService,
-    private readonly mcpServerService: McpServerService,
-  ) {}
+  mcpServerService!: McpServerService;
+
+  constructor(private readonly prisma: PrismaService) {
+    this.mcpServerService = new McpServerService({
+      name: 'database-access-tools',
+      version: '1.0.0',
+    });
+  }
 
   onModuleInit() {
     this.initGetProjectsTool();

@@ -1,23 +1,25 @@
 import { Controller, Get, Post, Req, Res } from '@nestjs/common';
 import { Request, Response } from 'express';
 import { SSEServerTransport } from '@modelcontextprotocol/sdk/server/sse.js';
-import { McpServerService } from '@service/mcp-server/mcp-server.service';
+import { DatabaseAccessToolService } from './database-access-tool.service';
 
-@Controller('database-access-tool')
+@Controller('database-access-tools')
 export class DatabaseAccessToolController {
   transport!: SSEServerTransport;
 
-  constructor(private readonly mcpServerService: McpServerService) {}
+  constructor(
+    private readonly databaseAccessToolService: DatabaseAccessToolService,
+  ) {}
 
   @Get('sse')
   connectSSE(@Res() res: Response) {
     try {
       this.transport = new SSEServerTransport('/messages', res);
-      this.mcpServerService.connect(this.transport);
-      return { success: true };
+      this.databaseAccessToolService.mcpServerService.connect(this.transport);
+      return res.send({ success: true });
     } catch (error) {
       console.error(error);
-      return { success: false };
+      return res.send({ success: false });
     }
   }
 
@@ -25,10 +27,10 @@ export class DatabaseAccessToolController {
   handleMessage(@Req() req: Request, @Res() res: Response) {
     try {
       if (this.transport) this.transport.handlePostMessage(req, res);
-      return { success: true };
+      return res.send({ success: true });
     } catch (error) {
       console.error(error);
-      return { success: false };
+      return res.send({ success: false });
     }
   }
 }
