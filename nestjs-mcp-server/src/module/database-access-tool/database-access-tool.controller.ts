@@ -14,7 +14,10 @@ export class DatabaseAccessToolController {
   @Get('sse')
   connectSSE(@Res() res: Response) {
     try {
-      this.transport = new SSEServerTransport('/messages', res);
+      this.transport = new SSEServerTransport(
+        '/database-access-tools/messages',
+        res,
+      );
       this.databaseAccessToolService.mcpServerService.connect(this.transport);
     } catch (error) {
       console.error(error);
