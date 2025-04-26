@@ -9,8 +9,8 @@ RUN apk add --no-cache yarn
 WORKDIR /app
 
 # Copy package.json and package-lock.json
-COPY package.json ./
-COPY yarn.lock ./
+COPY package.json /app/
+COPY yarn.lock /app/
 
 # Install only production dependencies
 RUN yarn cache clean
