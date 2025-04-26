@@ -4,9 +4,7 @@ ROOT_DIR=$(pwd)
 
 # Load environment variables from .env.prod file
 echo "Loading environment variables from .env.prod..."
-set -a
-[ -f .env.prod ] && . ".env.prod"
-set +a
+source script/load-env.sh
 
 # Initialize database schema
 echo "Initializing database schema..."

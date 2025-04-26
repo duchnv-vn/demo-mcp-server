@@ -1,7 +1,7 @@
 import { NestFactory } from '@nestjs/core';
-import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
+// import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
 import { AppModule } from './app.module';
-import { McpServerService } from '@service/mcp-server/mcp-server.service';
+// import { McpServerService } from '@service/mcp-server/mcp-server.service';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -11,8 +11,8 @@ async function bootstrap() {
     console.log(`========= App is listening on port ${appPort} =========`);
   });
 
-  const mcpServer = app.get(McpServerService);
-  const transport = new StdioServerTransport();
-  await mcpServer.connect(transport);
+  // const mcpServer = app.get(McpServerService);
+  // const transport = new StdioServerTransport();
+  // await mcpServer.connect(transport);
 }
 bootstrap();
