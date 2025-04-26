@@ -18,10 +18,7 @@ RUN yarn install --immutable
 RUN yarn add @swc/core @swc/cli -D
 
 # Copy the whole app
-COPY .env.prod ./
-COPY script ./
-COPY src ./
-COPY prisma ./
+COPY . .
 RUN chmod +x script/load-env.sh
 RUN chmod +x script/start.sh
 RUN chmod +x script/prisma-generate.sh
