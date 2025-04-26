@@ -1,12 +1,8 @@
 #!/bin/sh
 
-ROOT_DIR=$(pwd)
-
-ls -a
-
 # Load environment variables from .env.prod file
 echo "Loading environment variables from .env.prod..."
-source $ROOT_DIR/script/load-env.sh
+source script/load-env.sh
 
 # Initialize database schema
 echo "Initializing database schema..."
