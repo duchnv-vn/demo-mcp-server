@@ -6,7 +6,7 @@ ls -a
 
 # Load environment variables from .env.prod file
 echo "Loading environment variables from .env.prod..."
-[ -f $ROOT_DIR/script/load-env.sh ] && source $ROOT_DIR/script/load-env.sh
+source $ROOT_DIR/script/load-env.sh
 
 # Initialize database schema
 echo "Initializing database schema..."

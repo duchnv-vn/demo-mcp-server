@@ -6,6 +6,7 @@ yarn - error.log
 .gitignore
 .dockerignore
 .env
+.env.*
 .dockerfile
 LICENSE
 README.md
