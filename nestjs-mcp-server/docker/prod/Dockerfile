@@ -19,10 +19,10 @@ RUN yarn add @swc/core @swc/cli -D
 
 # Copy the whole app
 COPY . .
-RUN chmod +x script/load-env.sh
-RUN chmod +x script/start.sh
-RUN chmod +x script/prisma-generate.sh
-RUN chmod +x script/prisma-migration.sh
+RUN chmod +x /app/script/load-env.sh
+RUN chmod +x /app/script/start.sh
+RUN chmod +x /app/script/prisma-generate.sh
+RUN chmod +x /app/script/prisma-migration.sh
 
 # Generate Prisma client
 RUN yarn run prisma generate
