@@ -24,7 +24,7 @@ export class DatabaseAccessToolService implements OnModuleInit {
       'get-projects',
       'Retrieve multiple projects with filters',
       {
-        name: z.string().optional(),
+        name: z.string().optional().default(undefined),
       },
       async ({ name }) => {
         console.log('initGetProjectsTool', name);

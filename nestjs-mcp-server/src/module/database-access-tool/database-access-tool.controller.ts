@@ -21,6 +21,7 @@ export class DatabaseAccessToolController {
         '/database-access-tools/messages',
         res,
       );
+
       await this.databaseAccessToolService.mcpServerService.connect(
         this.transport,
       );
@@ -38,11 +39,16 @@ export class DatabaseAccessToolController {
   ) {
     console.log('=== HANDLE MESSAGE ===');
     console.log('ip:', ip);
-    console.log('body:', req.body);
+    console.log('mcp-session-id:', req.headers['mcp-session-id']);
 
     try {
-      if (this.transport)
+      if (this.transport) {
+        console.log('body:', req.body);
+        console.log('query:', req.query);
+        console.log('transport.sessionId:', this.transport.sessionId);
+
         await this.transport.handlePostMessage(req, res, req.body);
+      }
     } catch (error) {
       console.error(error);
       return res.send({ success: false });
